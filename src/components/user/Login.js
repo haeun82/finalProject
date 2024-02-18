@@ -112,7 +112,7 @@ function Login(props) {
   // useEffect(() => {
   //   const userInfo = async () => {
   //     try {
-  //       const response = await axios.get(`${process.env.REACT_APP_SERVER_DOMAIN}/user/login`, { withCredentials: true })
+  //       const response = await axios.get(`http://localhost:3000/user/login`, { withCredentials: true })
   //     } catch (error) {
   //       console.error(error);
   //     }
@@ -130,8 +130,11 @@ function Login(props) {
       } else if (!pw) {
         alert('비밀번호를 입력하세요.');
       }
-      const result = await axios.post(`${process.env.REACT_APP_SERVER_DOMAIN}/user/login`, { userId: id, passwd: pw }, { withCredentials: true });
+      const result = await axios.post(`http://localhost:3000/user/login`, { userId: id, passwd: pw }, { withCredentials: true });
+      console.log(result.data);
+
       dispatch(getLoginUserInfo(result.data.user));
+      // console.log(result.data.user);
       localStorage.setItem('user', JSON.stringify(result.data.user)); // 로그인 상태를 유지하기 위해 로컬 스토리지 사용
       if (await result?.data === '가입되지 않은 회원입니다.') {
         alert('아이디 또는 비밀번호가 틀림');

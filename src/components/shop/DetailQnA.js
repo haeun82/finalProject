@@ -84,7 +84,7 @@ function DetailQnA(props) {
   useEffect(() => {
     const getQnA = async () => {
       try {
-        const result = await axios.get(`${process.env.REACT_APP_SERVER_DOMAIN}/shop/qna/${postId}`);
+        const result = await axios.get(`http://localhost:3000/shop/qna/${postId}`);
         console.log(result.data.itemQna);
         setQna(result.data.itemQna);
       } catch (err) {

@@ -240,7 +240,7 @@ function DailyDogDetail(props) {
   useEffect(() => {
     const dailyDogData = async () => {
       try {
-        const responseItem = await axios.get(`${process.env.REACT_APP_SERVER_DOMAIN}/community/daily/detail/${id}`);
+        const responseItem = await axios.get(`http://localhost:3000/community/daily/detail/${id}`);
         setItem(responseItem.data.postData);
 
         setLikeCount(prev => ({ ...prev, upCount: responseItem.data.postData.like.length, downCount: responseItem.data.postData.dislike.length }));
@@ -272,12 +272,12 @@ function DailyDogDetail(props) {
       return alert('내가 남긴 글을 좋아요 할 수 없습니다.');
     } else {
       if (!upBtn) {
-        const res = await axios.patch(`${process.env.REACT_APP_SERVER_DOMAIN}/community/daily/likedown/down`, { postId: item._id, authorId: user._id });
-        const response = await axios.patch(`${process.env.REACT_APP_SERVER_DOMAIN}/community/daily/likeup/up`, { postId: item._id, authorId: user._id });
+        const res = await axios.patch(`http://localhost:3000/community/daily/likedown/down`, { postId: item._id, authorId: user._id });
+        const response = await axios.patch(`http://localhost:3000/community/daily/likeup/up`, { postId: item._id, authorId: user._id });
         setLikeBtn(prev => ({ ...prev, upBtn: !upBtn, downBtn: false }));
         setLikeCount(prev => ({ ...prev, upCount: response.data.count, downCount: res.data.count }));
       } else {
-        const response = await axios.patch(`${process.env.REACT_APP_SERVER_DOMAIN}/community/daily/likeup/down`, { postId: item._id, authorId: user._id });
+        const response = await axios.patch(`http://localhost:3000/community/daily/likeup/down`, { postId: item._id, authorId: user._id });
         setLikeBtn(prev => ({ ...prev, upBtn: !upBtn }));
         setLikeCount(prev => ({ ...prev, upCount: response.data.count}));
       }
@@ -292,12 +292,12 @@ function DailyDogDetail(props) {
       return alert('내가 남긴 글을 싫어요 할 수 없습니다.');
     } else {
       if (!downBtn) {
-        const res = await axios.patch(`${process.env.REACT_APP_SERVER_DOMAIN}/community/daily/likeup/down`, { postId: item._id, authorId: user._id });
-        const response = await axios.patch(`${process.env.REACT_APP_SERVER_DOMAIN}/community/daily/likedown/up`, { postId: item._id, authorId: user._id });
+        const res = await axios.patch(`http://localhost:3000/community/daily/likeup/down`, { postId: item._id, authorId: user._id });
+        const response = await axios.patch(`http://localhost:3000/community/daily/likedown/up`, { postId: item._id, authorId: user._id });
         setLikeBtn(prev => ({ ...prev, downBtn: !downBtn, upBtn: false }));
         setLikeCount(prev => ({ ...prev, downCount: response.data.count, upCount: res.data.count }));
       } else {
-        const response = await axios.patch(`${process.env.REACT_APP_SERVER_DOMAIN}/community/daily/likedown/down`, { postId: item._id, authorId: user._id });
+        const response = await axios.patch(`http://localhost:3000/community/daily/likedown/down`, { postId: item._id, authorId: user._id });
         setLikeBtn(prev => ({ ...prev, downBtn: !downBtn }));
         setLikeCount(prev => ({ ...prev, downCount: `${response.data.count}`}));
       }
@@ -307,7 +307,7 @@ function DailyDogDetail(props) {
   const handleDeleteItem = async () => {
 
     try {
-      await axios.delete(`${process.env.REACT_APP_SERVER_DOMAIN}/community/daily/delete/${item.id}`);
+      await axios.delete(`http://localhost:3000/community/daily/delete/${item.id}`);
       alert('게시글을 삭제하였습니다.');
       navigate(-1);
     } catch (err) {

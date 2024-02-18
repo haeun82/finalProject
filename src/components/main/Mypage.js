@@ -110,7 +110,7 @@ function Mypage(props) {
   const handleSave = async (e) => {
     if ((editNickname && editDogType && editDogName && editDogAge)) alert('변경사항이 없습니다.');
     
-    const result = await axios.post(`${process.env.REACT_APP_SERVER_DOMAIN}/user/editPersonalInfo`, {nick, dogType, dogName, dogAge}, {withCredentials: true});
+    const result = await axios.post(`http://localhost:3000/user/editPersonalInfo`, {nick, dogType, dogName, dogAge}, {withCredentials: true});
     if (result.data.flag) {
       alert('저장되었습니다!');
       dispatch(changeLoginUserInfo(result.data.result));
@@ -132,7 +132,7 @@ function Mypage(props) {
     setShowModal(true);
   };
   const handleQuit = async () => {
-    const result = await axios.get(`${process.env.REACT_APP_SERVER_DOMAIN}/user/accountQuit`, {withCredentials:true});
+    const result = await axios.get(`http://localhost:3000/user/accountQuit`, {withCredentials:true});
     if (result.data.flag) alert(`${result.data.message}`);
   };
 

@@ -132,7 +132,7 @@ function Header(props) {
   const navigate = useNavigate();
   const user = useSelector(getLoginUser) // 현재 로그인중인 유저 정보
   const handleLogOut = async () => {
-    const result = await axios.get(`${process.env.REACT_APP_SERVER_DOMAIN}/user/logout`, {withCredentials:true});
+    const result = await axios.get(`http://localhost:3000/user/logout`, {withCredentials:true});
     console.log(result.data);
     navigate('/');
     window.location.reload();

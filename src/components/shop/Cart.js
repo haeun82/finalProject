@@ -80,7 +80,7 @@ function Cart(props) {
 
   useEffect(() => {
     const list = async () => {
-      const result = await axios.post(`${process.env.REACT_APP_SERVER_DOMAIN}/shop/getCart`, {}, { withCredentials: true });
+      const result = await axios.post(`http://localhost:3000/shop/getCart`, {}, { withCredentials: true });
       if (result.data.result) setCartList(result.data.result.list);
       else setCartList();
     }
@@ -92,17 +92,17 @@ function Cart(props) {
       alert('수량 1개 입니다!\n삭제 버튼을 눌러주세요.');
       return ;
     }
-    const result = await axios.post(`${process.env.REACT_APP_SERVER_DOMAIN}/shop/minusCount`, {postId}, {withCredentials: true});
+    const result = await axios.post(`http://localhost:3000/shop/minusCount`, {postId}, {withCredentials: true});
     setCartList(result.data.result.list);
   };
 
   const handlePlus = async (postId) => {
-    const result = await axios.post(`${process.env.REACT_APP_SERVER_DOMAIN}/shop/plusCount`, {postId}, {withCredentials: true});
+    const result = await axios.post(`http://localhost:3000/shop/plusCount`, {postId}, {withCredentials: true});
     setCartList(result.data.result.list);
   };
   
   const handleDelete = async (postId) => {
-    const result = await axios.post(`${process.env.REACT_APP_SERVER_DOMAIN}/shop/deleteCart`, {postId}, {withCredentials: true});
+    const result = await axios.post(`http://localhost:3000/shop/deleteCart`, {postId}, {withCredentials: true});
     setCartList(result.data.result.list);
   };
   
@@ -115,7 +115,7 @@ function Cart(props) {
       const result = pay(cartList[0], cartList[0].count, totalPrice, cartList.length - 1);
       console.log(result);
       if (result.event == 'done' || result.event == 'issued') {
-        const result = await axios.get(`${process.env.REACT_APP_SERVER_DOMAIN}/shop/purchaseAdds`, {withCredentials: true});
+        const result = await axios.get(`http://localhost:3000/shop/purchaseAdds`, {withCredentials: true});
         if (result.data.flag) {
           alert('결제가 완료되었습니다!');
           navigate('/purchase');

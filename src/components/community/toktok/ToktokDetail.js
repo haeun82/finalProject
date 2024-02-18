@@ -44,7 +44,7 @@ function ToktokDetail(props) {
 
   useEffect(() => {
     const commentListGet = async () => {
-      const response = await axios.get(`${process.env.REACT_APP_SERVER_DOMAIN}/community/toktok/detail/${_id}`, { withCredentials: true })
+      const response = await axios.get(`http://localhost:3000/community/toktok/detail/${_id}`, { withCredentials: true })
       setGetDetailCommentList(response.data.commentData)
       setGetDetailList(response.data.postData)
     };
@@ -56,7 +56,7 @@ function ToktokDetail(props) {
   }
   const handleComment = async () => {
     try {
-      await axios.post(`${process.env.REACT_APP_SERVER_DOMAIN}/community/toktok/comment/${_id}`, { comment: commentValue, postId: _id, user: 로그인중 }, { withCredentials: true })
+      await axios.post(`http://localhost:3000/community/toktok/comment/${_id}`, { comment: commentValue, postId: _id, user: 로그인중 }, { withCredentials: true })
       window.location.reload();
     } catch (error) {
       console.error(error);
@@ -64,7 +64,7 @@ function ToktokDetail(props) {
   }
   const handleDel = async () => {
     try {
-      await axios.delete(`${process.env.REACT_APP_SERVER_DOMAIN}/community/toktok/delete/${_id}`, { withCredentials: true })
+      await axios.delete(`http://localhost:3000/community/toktok/delete/${_id}`, { withCredentials: true })
       navigate('/community/Toktok');
     } catch (error) {
       console.error(error);

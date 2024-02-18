@@ -62,7 +62,7 @@ function FleamarketItem(props) {
 
   const handleItemClick = async () => {
     try {
-      await axios.patch(`${process.env.REACT_APP_SERVER_DOMAIN}/vintage/view/${_id}`);
+      await axios.patch(`http://localhost:3000/vintage/view/${_id}`);
       navigate(`/community/fleamarket/${id}`)
     } catch (err) {
       console.error(err);

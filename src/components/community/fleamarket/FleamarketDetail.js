@@ -166,7 +166,7 @@ function FleamarketDetail(props) {
   useEffect(() => {
     const fleamarketData = async () => {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_SERVER_DOMAIN}/vintage/detail/${id}`);        
+        const response = await axios.get(`http://localhost:3000/vintage/detail/${id}`);        
         setItem(response.data.postData);
         setEdit(prev => ({ ...prev, content: response.data.postData.content }));
       } catch (err) {
@@ -183,7 +183,7 @@ function FleamarketDetail(props) {
   const handleDeleteItem = async () => {
 
     try {
-      await axios.delete(`${process.env.REACT_APP_SERVER_DOMAIN}/community/daily/delete/${item.id}`);
+      await axios.delete(`http://localhost:3000/community/daily/delete/${item.id}`);
       alert('게시글을 삭제하였습니다.');
       navigate(-1);
     } catch (err) {

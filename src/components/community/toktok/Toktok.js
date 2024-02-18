@@ -101,7 +101,7 @@ function Toktok(props) {
   useEffect(() => {
     const toktokListGet = async () => {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_SERVER_DOMAIN}/community/toktok`);
+        const response = await axios.get(`http://localhost:3000/community/toktok`);
         await setGetList(response.data.data);
       } catch (error) {
         console.error(error);
@@ -111,7 +111,7 @@ function Toktok(props) {
 
     const commentGet = async () => {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_SERVER_DOMAIN}/community/toktok/comment`, { withCredentials: true });
+        const response = await axios.get(`http://localhost:3000/community/toktok/comment`, { withCredentials: true });
         setComment(response.data.commentData);
       } catch (error) {
         console.error(error);

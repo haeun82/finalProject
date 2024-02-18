@@ -84,7 +84,8 @@ function DailyDogEdit(props) {
   useEffect(() => {
     const dailyDogEditData = async () => {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_SERVER_DOMAIN}/community/daily/edit/${postId}`);
+        // const response = await axios.get(`${process.env.REACT_APP_SERVER_DOMAIN}/community/daily/edit/${postId}`);
+        const response = await axios.get(`http://localhost:3000/community/daily/edit/${postId}`);
         setValues(prev => ({ ...prev, title: response.data.data.title, author: response.data.data.author }));
         editorRef.current?.getInstance().setHTML(response.data.data.content)
 
@@ -114,7 +115,7 @@ function DailyDogEdit(props) {
           let formData = new FormData();
           formData.append('img', blob);
 
-          const response = await axios.post(`${process.env.REACT_APP_SERVER_DOMAIN}/community/daily/insert/image`, formData, {
+          const response = await axios.post(`http://localhost:3000/community/daily/insert/image`, formData, {
             header: { 'content-type': 'multipart/formdata' },
             withCredentials: true,
           });
@@ -152,7 +153,7 @@ function DailyDogEdit(props) {
       return alert('내용을 입력해주세요.');
     } else {
       try {
-        await axios.patch(`${process.env.REACT_APP_SERVER_DOMAIN}/community/daily/edit/${postId}`, { title, content, imgUrl: images, imgKey: imagesKey })
+        await axios.patch(`http://localhost:3000/community/daily/edit/${postId}`, { title, content, imgUrl: images, imgKey: imagesKey })
         alert('게시글이 수정되었습니다.');
         navigate('/community/dailyDog');
       } catch (err) {

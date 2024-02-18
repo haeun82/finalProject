@@ -112,7 +112,7 @@ function PersonalDog(props) {
   useEffect(() => {
     const commentListGet = async () => {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_SERVER_DOMAIN}/community/toktok/PersonalDog`, { withCredentials: true });
+        const response = await axios.get(`http://localhost:3000/community/toktok/PersonalDog`, { withCredentials: true });
         setGetPersonalDog(response.data);
       } catch (error) {
         console.error(error);

@@ -133,7 +133,7 @@ function ItemList(props) {
   useEffect(() => {
     try {
       const getList = async () => {
-        const result =  await axios.get(`${process.env.REACT_APP_SERVER_DOMAIN}/shop/`, {withCredentials: true});
+        const result =  await axios.get(`http://localhost:3000/shop/`, {withCredentials: true});
         dispatch(getProducts(result.data.posts));
       }
       getList();
@@ -174,10 +174,10 @@ function ItemList(props) {
   const handleMore = async () => {
     console.log(selectedCategory);
     if (!selectedCategory) {
-      const result = await axios.get(`${process.env.REACT_APP_SERVER_DOMAIN}/shop/?nextId=${productList[productList.length - 1]._id}`);
+      const result = await axios.get(`http://localhost:3000/shop/?nextId=${productList[productList.length - 1]._id}`);
       dispatch(addMoreProducts(result.data.posts));
     } else {
-      const result = await axios.get(`${process.env.REACT_APP_SERVER_DOMAIN}/shop/category/${selectedCategory}?nextId=${productList[productList.length - 1]._id}`);
+      const result = await axios.get(`http://localhost:3000/shop/category/${selectedCategory}?nextId=${productList[productList.length - 1]._id}`);
       dispatch(addMoreProducts(result.data.posts));
     }
   };

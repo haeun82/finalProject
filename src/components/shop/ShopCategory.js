@@ -64,27 +64,27 @@ function ShopCategory(props) {
   // 카테고리 별 페이지 요청 할 axios
   const axiosAll = async () => {
     dispatch(getSelectedCategory(''));
-    const result = await axios.get(`${process.env.REACT_APP_SERVER_DOMAIN}/shop/`);
+    const result = await axios.get(`http://localhost:3000/shop/`);
     dispatch(getProducts(result.data.posts));
   };
   const axiosFeed = async () => {
     dispatch(getSelectedCategory('feed'));
-    const result = await axios.get(`${process.env.REACT_APP_SERVER_DOMAIN}/shop/category/feed`);
+    const result = await axios.get(`http://localhost:3000/shop/category/feed`);
     dispatch(getProducts(result.data.posts));
   };
   const axiosSnack = async () => {
     dispatch(getSelectedCategory('snack'));
-    const result = await axios.get(`${process.env.REACT_APP_SERVER_DOMAIN}/shop/category/snack`);
+    const result = await axios.get(`http://localhost:3000/shop/category/snack`);
     dispatch(getProducts(result.data.posts));
   };
   const axiosPlay = async () => {
     dispatch(getSelectedCategory('play'));
-    const result = await axios.get(`${process.env.REACT_APP_SERVER_DOMAIN}/shop/category/play`);
+    const result = await axios.get(`http://localhost:3000/shop/category/play`);
     dispatch(getProducts(result.data.posts));
   };
   const axiosHygiene = async () => {
     dispatch(getSelectedCategory('hygiene'));
-    const result = await axios.get(`${process.env.REACT_APP_SERVER_DOMAIN}/shop/category/hygiene`);
+    const result = await axios.get(`http://localhost:3000/shop/category/hygiene`);
     dispatch(getProducts(result.data.posts));
   };
   

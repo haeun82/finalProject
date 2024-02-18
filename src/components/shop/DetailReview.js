@@ -255,7 +255,7 @@ function DetailReview(props) {
   useEffect(() => {
     const list = async () => {
       try {
-        const result = await axios.get(`${process.env.REACT_APP_SERVER_DOMAIN}/shop/review/${postId}`);
+        const result = await axios.get(`http://localhost:3000/shop/review/${postId}`);
         const reviewArr = [...result.data.itemReview];
         switch (selected) {
           case 'latest':
@@ -301,7 +301,7 @@ function DetailReview(props) {
       formData.append('title', title);
       formData.append('date', date);
 
-      const result = await axios.post(`${process.env.REACT_APP_SERVER_DOMAIN}/shop/reviewInsert/${postId}`, formData, {withCredentials:true});
+      const result = await axios.post(`http://localhost:3000/shop/reviewInsert/${postId}`, formData, {withCredentials:true});
       console.log(result);
       setReviewList(result.data);
     } catch (err) {
@@ -332,7 +332,7 @@ function DetailReview(props) {
   };
   const handleReviewDelete = async (_id) => {
     try {
-      await axios.post(`${process.env.REACT_APP_SERVER_DOMAIN}/shop/reviewDelete`, { _id, postId }, {withCredentials: true});
+      await axios.post(`http://localhost:3000/shop/reviewDelete`, { _id, postId }, {withCredentials: true});
       setReview(prev => !prev);
     } catch (err) {
       console.error(err);

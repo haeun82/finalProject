@@ -164,7 +164,7 @@ function ShopDetail(props) {
     // 서버에 특정 상품의 데이터 요청
     const fetchProductById = async () => {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_SERVER_DOMAIN}/shop/detail/${postId}`, {withCredentials: true});
+        const response = await axios.get(`http://localhost:3000/shop/detail/${postId}`, {withCredentials: true});
         dispatch(getSelectedProduct(response.data.itemDetail))
       } catch (error) {
         console.error(error);
@@ -192,7 +192,7 @@ function ShopDetail(props) {
       if (result) navigate('/login');
     }
     try {
-      const result = await axios.post(`${process.env.REACT_APP_SERVER_DOMAIN}/shop/plusCart`, { title, price, postId, productCount }, {withCredentials:true});
+      const result = await axios.post(`http://localhost:3000/shop/plusCart`, { title, price, postId, productCount }, {withCredentials:true});
     } catch (err) {
       console.error(err);
     }
@@ -209,7 +209,7 @@ function ShopDetail(props) {
     const result = await pay(product, productCount, productCount * product.price);
     console.log('구매결과::', result);
     if (result.event === 'done' || result.event === 'issued') {
-      const result = await axios.post(`${process.env.REACT_APP_SERVER_DOMAIN}/shop/purchaseAdd`, { postId, price, title, productCount }, {withCredentials: true});
+      const result = await axios.post(`http://localhost:3000/shop/purchaseAdd`, { postId, price, title, productCount }, {withCredentials: true});
       if (result.data.flag) {
         setShowBuyModal(false);
         alert('결제가 완료되었습니다!');

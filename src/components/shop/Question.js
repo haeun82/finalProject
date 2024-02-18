@@ -75,7 +75,7 @@ function Question(props) {
       if (!content) {
         alert('내용을 입력해주세요');
       }
-      const result = await axios.post(`${process.env.REACT_APP_SERVER_DOMAIN}/shop/qna/${postId}`, { title, content, date }, {withCredentials: true});
+      const result = await axios.post(`http://localhost:3000/shop/qna/${postId}`, { title, content, date }, {withCredentials: true});
       if (result.data) alert('문의가 등록되었습니다!');
       navigate(`/shop/detail/${postId}`);
     } catch (err) {

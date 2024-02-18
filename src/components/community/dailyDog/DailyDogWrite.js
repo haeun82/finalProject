@@ -79,7 +79,7 @@ function DailyDogWrite(props) {
   useEffect(() => {
     const dailyDogData = async () => {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_SERVER_DOMAIN}/community/daily/number`);
+        const response = await axios.get(`http://localhost:3000/community/daily/number`);
         setValues(prevValue => ({ ...prevValue, id: response.data.id ? response.data.id + 1 : 1 }));
       } catch (err) {
         console.error(err);
@@ -110,7 +110,7 @@ function DailyDogWrite(props) {
           let formData = new FormData();
           formData.append('img', blob);
 
-          const response = await axios.post(`${process.env.REACT_APP_SERVER_DOMAIN}/community/daily/insert/image`, formData, {
+          const response = await axios.post(`http://localhost:3000/community/daily/insert/image`, formData, {
             header: { 'content-type': 'multipart/formdata' },
             withCredentials: true,
           });
@@ -142,7 +142,7 @@ function DailyDogWrite(props) {
       try {
         const date = new Date();
 
-        await axios.post(`${process.env.REACT_APP_SERVER_DOMAIN}/community/daily/insert`, { id, title, content, imgUrl: images, imgKey: imagesKey, author: user.signUserNicname, authorId: user._id, date })
+        await axios.post(`http://localhost:3000/community/daily/insert`, { id, title, content, imgUrl: images, imgKey: imagesKey, author: user.signUserNicname, authorId: user._id, date })
         alert('게시글이 등록되었습니다.');
         navigate('/community/dailyDog');
       } catch (err) {
