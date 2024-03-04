@@ -52,7 +52,7 @@ function NewDailyDog(props) {
           {items.map(item => {
             return (
               <StyledCol sm key={item._id} onClick={() => navigate(`/community/dailydog/detail/${item.id}`)} >
-                <img src={item.imgUrl[0] ? item.imgUrl[0] : nophoto}/>
+                <img src={item.imgUrl ? item.imgUrl : nophoto}/>
                 <h3>{item.title}</h3>
               </StyledCol>
               )

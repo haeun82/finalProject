@@ -222,6 +222,7 @@ const DailyDogDetailContainer = styled.div`
 
 function DailyDogDetail(props) {
   const { id } = useParams();
+  console.log(id);
   const navigate = useNavigate();
   const user = useSelector(getLoginUser);
   const [ item, setItem ] = useState('');
@@ -240,7 +241,7 @@ function DailyDogDetail(props) {
   useEffect(() => {
     const dailyDogData = async () => {
       try {
-        const responseItem = await axios.get(`http://localhost:3000/community/daily/detail/${id}`);
+        const responseItem = await axios.get(`http://localhost:3000/community/dailydog/detail/${id}`);
         setItem(responseItem.data.postData);
 
         setLikeCount(prev => ({ ...prev, upCount: responseItem.data.postData.like.length, downCount: responseItem.data.postData.dislike.length }));
@@ -322,7 +323,7 @@ function DailyDogDetail(props) {
           {user && user._id === item.authorId
             ?
             <div className='edit-box'>
-              <button onClick={() => navigate(`/community/dailydog/edit/${item._id}`)}>수정</button>
+              <button onClick={() => navigate(`/community/daily/edit/${item._id}`)}>수정</button>
               <button onClick={handleDeleteItem}>삭제</button>
             </div>
             : null

@@ -55,7 +55,7 @@ const DailyDogWriteContainer = styled.div`
     }
   }
 
-   .ProseMirror-widget {
+    .ProseMirror-widget {
     background: #fff;
     font-size: 16px;
     cursor: text;
@@ -91,8 +91,8 @@ function DailyDogWrite(props) {
   const editorRef = useRef();
 
   const titleOnChange = (e) => {
-   const title = e.target.value
-   setValues(value => ({ ...value, title }));
+    const title = e.target.value
+    setValues(value => ({ ...value, title }));
   };
 
   const contentOnChange = () => {
@@ -109,6 +109,8 @@ function DailyDogWrite(props) {
         (async () => {
           let formData = new FormData();
           formData.append('img', blob);
+          
+          console.log('이미지가 업로드 됐습니다.');
 
           const response = await axios.post(`http://localhost:3000/community/daily/insert/image`, formData, {
             header: { 'content-type': 'multipart/formdata' },

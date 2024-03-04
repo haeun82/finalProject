@@ -61,6 +61,7 @@ function BestPost(props) {
   const handleMove = (item) => {
 
     if (item.type === 'daily') {
+      console.log(item.id);
       return navigate(`/community/dailydog/detail/${item.id}`)
     }
     if (item.type === 'toktok') {
@@ -75,7 +76,8 @@ function BestPost(props) {
           {items.map(item => {
             return (
               <StyledCol sm key={item._id} onClick={() => handleMove(item)}>
-                <img src={item.imgUrl[0] ? item.imgUrl[0] : nophoto}/>
+                {/* <img src={item.imgUrl[0] ? item.imgUrl[0] : nophoto}/> */}
+                <img src={item.imgUrl ? item.imgUrl : nophoto}/>
                 <h4>{mappings[item.type]}</h4>
                 <h3>{item.title}</h3>
               </StyledCol>

@@ -105,14 +105,14 @@ function DailyDog(props) {
   const handlePage = (index) => {
     window.scrollTo(0, 0);
     setPage(prev => ({ ...prev, selectPage: index + 1 }));
-    navigate(`/community/dailydog?page=${index+1}`)
+    navigate(`/community/daily?page=${index+1}`)
   }
 
   const handlePageFirst = () => {
     if (selectPage > 1) {
       window.scrollTo(0, 0);
       setPage(prev => ({ ...prev, passPage: 1, selectPage: 1 }));
-      navigate('/community/dailydog?page=1');
+      navigate('/community/daily?page=1');
     }
   }
 
@@ -120,11 +120,11 @@ function DailyDog(props) {
     if (selectPage > 10) {
       window.scrollTo(0, 0);
       setPage(prev => ({ ...prev, passPage: passPage - 10, selectPage: passPage - 1 }));
-      navigate(`/community/dailydog?page=${passPage-10}`)
+      navigate(`/community/daily?page=${passPage-10}`)
     } else if (selectPage > 1) {
       window.scrollTo(0, 0);
       setPage(prev => ({ ...prev, selectPage: selectPage - 1 }));
-      navigate(`/community/dailydog?page=${selectPage-1}`)
+      navigate(`/community/daily?page=${selectPage-1}`)
     } else {
       return null;
     }
@@ -134,11 +134,11 @@ function DailyDog(props) {
     if (passPage + 9 < numOfPage) {
       window.scrollTo(0, 0);
       setPage(prev => ({ ...prev, passPage: passPage + 10, selectPage: passPage + 10 }));
-      navigate(`/community/dailydog?page=${passPage+10}`)
+      navigate(`/community/daily?page=${passPage+10}`)
     } else if (selectPage < numOfPage) {
       window.scrollTo(0, 0);
       setPage(prev => ({ ...prev, selectPage: selectPage + 1 }));
-      navigate(`/community/dailydog?page=${selectPage+1}`)
+      navigate(`/community/daily?page=${selectPage+1}`)
     } else {
       return null;
     }
@@ -150,7 +150,7 @@ function DailyDog(props) {
 
     window.scrollTo(0, 0);
     setPage(prev => ({ ...prev, passPage: Number(result), selectPage: numOfPage }));
-    navigate(`/community/dailydog?page=${numOfPage}`)
+    navigate(`/community/daily?page=${numOfPage}`)
   }
 
   return (
